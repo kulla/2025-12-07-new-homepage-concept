@@ -11,7 +11,7 @@ many people as possible.
 
 #### Toggle: Helping teachers to create great learning experiences
 
-### I want to find and share the intuition behind abstract concepts
+### Translating the Abstract into Shared Clarity
 
 So much of what shapes our world is rooted in abstract concepts. What excites me
 is (re)discovering and understanding the core _why_ behind the curtain of
