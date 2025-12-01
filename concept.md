@@ -2,12 +2,12 @@
 
 ## My Vision
 
-### I want to help people with the software I create
+### Maximizing Positive Impact
 
-The most motivating and rewarding part of my work is when people genuinely tell
-or write to me about how much my work has helped them. I strive to invest my
-limited time on earth, knowledge, and skill to create a positive impact for as
-many people as possible.
+The most rewarding and motivating part of my work is receiving genuine feedback
+on how much it has helped others. I strive to invest my finite time, knowledge,
+and skill to create the greatest possible positive impact for as many people as
+I can.
 
 #### Toggle: Helping teachers to create great learning experiences
 
