@@ -13,9 +13,7 @@ many people as possible.
 
 ### I want to find and share the intuition behind abstract concepts
 
-Most of the technological and scientific advancements that have shaped our world
-are built on abstract concepts. However, only if one understands their
-underlying intuition – the why and how behind these concepts – can one truly
-leverage their power. I feel a great joy to (re)discover the motivation and
-intuition behind abstract concepts and share them with overs in sticking and
-motivating stories.
+So much of what shapes our world is rooted in abstract concepts. What excites me
+is (re)discovering and understanding the core _why_ behind the curtain of
+abstraction. I enjoy turning these insights into clear explanations that help
+others feel that same spark of clarity.
