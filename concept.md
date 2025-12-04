@@ -9,8 +9,6 @@ on how much it has helped others. I strive to invest my finite time, knowledge,
 and skill to create the greatest possible positive impact for as many people as
 I can.
 
-#### Toggle: Helping teachers to create great learning experiences
-
 ### Translating the Abstract into Shared Clarity
 
 So much of what shapes our world is rooted in abstract concepts. What excites me
