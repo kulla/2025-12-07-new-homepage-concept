@@ -42,3 +42,17 @@ own.
 
 Few things are black‑and‑white; the world is full of nuance. Embracing this
 complexity encourages humility and a more open perspective.
+
+## Some of my projects
+
+### Serlo Editor
+
+A collaborative WYSIWYG framework for structured documents that unifies the
+strengths of rich‑text editors and schema‑based content. Through my work in the
+educational field, I identified a significant gap: while WYSIWYG editors like
+Lexical or ProseMirror offer excellent usability and collaboration, they lack
+support for structured content (such as exercises consisting of a question and
+an answer). Form‑based tools like H5P enable structured educational material,
+yet fall behind in user experience and do not support real‑time editing. By
+combining both worlds, this framework empowers educators and other professionals
+to create high‑quality materials with ease.
