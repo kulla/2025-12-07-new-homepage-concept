@@ -70,3 +70,19 @@ developers and was responsible for the development and maintenance of the entire
 platform. The technical stack includes a TypeScript-based environment with a
 GraphQL API powered by Apollo on the backend, and a modern frontend built with
 React and Next.js.
+
+### Open textbooks "Mathe für Nicht-Freaks"
+
+Mathe für Nicht‑Freaks is an open, community-driven mathematics textbook created
+with the vision that all students should be able to make a confident and
+successful transition from school to university-level mathematics. I founded the
+project during my studies after seeing how many students struggled with the
+shift toward abstraction, formal reasoning, and proof-based thinking.
+
+The project’s didactic approach centers on making abstract mathematics genuinely
+understandable by uncovering and explaining the core intuition behind each
+concept. Instead of overwhelming learners with formalism, the material builds
+understanding step by step, using motivation, clear explanations, and
+well-structured examples. The goal is not merely to teach computational
+techniques, but to help students develop real conceptual insight—so they can
+think mathematically rather than simply follow formal procedures.
