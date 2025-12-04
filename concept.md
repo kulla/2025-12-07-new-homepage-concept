@@ -56,3 +56,17 @@ an answer). Form‑based tools like H5P enable structured educational material,
 yet fall behind in user experience and do not support real‑time editing. By
 combining both worlds, this framework empowers educators and other professionals
 to create high‑quality materials with ease.
+
+### Serlo Plattform
+
+Serlo.org is a free and open learning platform designed to make high-quality
+education accessible to everyone. A central part of Serlo’s vision is to provide
+an inclusive, distraction-free learning environment that supports students at
+different skill levels. Similar to Wikipedia, the platform is community-driven,
+and all content is freely accessible as open educational material.
+
+During my work at Serlo, I served as Team Lead for up to twelve software
+developers and was responsible for the development and maintenance of the entire
+platform. The technical stack includes a TypeScript-based environment with a
+GraphQL API powered by Apollo on the backend, and a modern frontend built with
+React and Next.js.
