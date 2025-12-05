@@ -15,7 +15,7 @@ export const Default: Story = {}
 function StartScreen() {
   return (
     <div className="bg-white w-full min-h-screen flex items-center justify-center">
-      <div className="flex items-center gap-10">
+      <div className="flex items-center flex-col gap-10 md:flex-row">
         <div className="flex-shrink-0">
           <img
             src="https://avatars.githubusercontent.com/u/1327215?v=4"
@@ -24,20 +24,18 @@ function StartScreen() {
           />
         </div>
 
-        <div className="max-w-80">
-          <h1 className="text-3xl">
-            <span className="font-light inline-block mb-3">
-              Hi there! &#128075;
-            </span>
-            <br />
-            <span className="font-extrabold inline-block">I'm Kulla,</span>
-            <br />
-            <span className="font-medium inline-block">
-              software developer and educator...
-            </span>
-            <br />
-          </h1>
-        </div>
+        <h1 className="text-3xl max-w-80">
+          <span className="font-light inline-block mb-3">
+            Hi there! &#128075;
+          </span>
+          <br />
+          <span className="font-extrabold inline-block">I'm Kulla,</span>
+          <br />
+          <span className="font-medium inline-block">
+            software developer and educator...
+          </span>
+          <br />
+        </h1>
       </div>
     </div>
   )
