@@ -25,7 +25,7 @@ function StartScreen() {
         </div>
 
         <div className="max-w-80">
-          <p className="text-3xl">
+          <h1 className="text-3xl">
             <span className="font-light inline-block mb-3">Hi there! 👋</span>
             <br />
             <span className="font-extrabold inline-block">I'm Kulla,</span>
@@ -34,7 +34,7 @@ function StartScreen() {
               software developer and educator...
             </span>
             <br />
-          </p>
+          </h1>
         </div>
       </div>
     </div>
