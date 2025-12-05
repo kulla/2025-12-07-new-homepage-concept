@@ -25,11 +25,15 @@ function StartScreen() {
         </div>
 
         <div className="max-w-80">
-          <p className="text-3xl md:text-4xl font-bold mb-2">
-            Hi there! <span className="inline-block">👋</span>
-          </p>
-          <p className="text-2xl md:text-3xl font-normal">
-            I am Kulla, <br /> software developer and educator …
+          <p className="text-3xl">
+            <span className="font-light inline-block mb-3">Hi there! 👋</span>
+            <br />
+            <span className="font-extrabold inline-block">I'm Kulla,</span>
+            <br />
+            <span className="font-medium inline-block">
+              software developer and educator...
+            </span>
+            <br />
           </p>
         </div>
       </div>
