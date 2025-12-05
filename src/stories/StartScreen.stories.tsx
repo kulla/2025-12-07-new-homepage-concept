@@ -14,7 +14,10 @@ export const Default: Story = {}
 
 function StartScreen() {
   return (
-    <div className="bg-white w-full min-h-screen flex items-center justify-center ">
+    <div
+      className="bg-white w-full min-h-screen flex items-center justify-center"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
       <div className="flex items-center gap-10">
         <div className="flex-shrink-0">
           <img
