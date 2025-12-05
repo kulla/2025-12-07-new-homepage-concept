@@ -26,7 +26,9 @@ function StartScreen() {
 
         <div className="max-w-80">
           <h1 className="text-3xl">
-            <span className="font-light inline-block mb-3">Hi there! 👋</span>
+            <span className="font-light inline-block mb-3">
+              Hi there! &#128075;
+            </span>
             <br />
             <span className="font-extrabold inline-block">I'm Kulla,</span>
             <br />
