@@ -20,11 +20,11 @@ function StartScreen() {
           <img
             src="https://avatars.githubusercontent.com/u/1327215?v=4"
             alt="Portrait of Kulla"
-            className="w-40 h-40 rounded-full object-cover"
+            className="w-40 h-40 md:w-50 md:h-50 rounded-full object-cover"
           />
         </div>
 
-        <h1 className="text-3xl max-w-60 md:max-w-80 text-center md:text-left">
+        <h1 className="text-3xl md:text-4xl max-w-60 md:max-w-80 text-center md:text-left">
           <span className="font-light inline-block mb-3">
             Hi there! &#128075;
           </span>
