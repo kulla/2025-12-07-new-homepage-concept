@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 const NUM_PARTICLES = 1000
 
 const meta = {
-  title: 'RandomParticles',
+  title: 'Animation/Random Particles',
   component: Animation,
 } satisfies Meta<typeof Animation>
 
