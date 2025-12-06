@@ -12,8 +12,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@pixi/layers": "^2.1.0",
-    "@pixi/react": "^8.0.5",
     "@tailwindcss/vite": "^4.1.17",
     "pixi.js": "^8.14.3",
     "react": "^19.2.0",
