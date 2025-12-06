@@ -1,6 +1,11 @@
 import './style.css'
 
-import { Application, Assets, Particle, ParticleContainer } from 'pixi.js'
+import {
+  Application,
+  Assets,
+  Particle as PixiParticle,
+  ParticleContainer,
+} from 'pixi.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useEffect } from 'react'
 
@@ -23,6 +28,11 @@ function Animation() {
   return null
 }
 
+class Particle extends PixiParticle {
+  vx: number = 0
+  vy: number = 0
+}
+
 async function initAnimation() {
   removeOldCanvases()
 
@@ -43,7 +53,7 @@ async function initAnimation() {
   app.stage.addChild(container)
   app.ticker.maxFPS = 30
 
-  const particles: ParticleObject[] = []
+  const particles: Particle[] = []
 
   for (let i = 0; i < NUM_PARTICLES; i++) {
     const scale = 0.02 + Math.random() * 0.05
@@ -58,30 +68,21 @@ async function initAnimation() {
       alpha: 1,
     })
 
-    particles.push({
-      particle,
-      vx: Math.random() * 1 - 0.5,
-      vy: Math.random() * 1 - 0.5,
-    })
-
-    container.addParticle(particle)
+    particle.vx = Math.random() * 1 - 0.5
+    particle.vy = Math.random() * 1 - 0.5
   }
 
-  app.ticker.add((ticker) => {
-    for (const p of particles) {
-      p.particle.x += p.vx * ticker.deltaTime
-      p.particle.y += p.vy * ticker.deltaTime
+  container.addParticle(...particles)
 
-      if (p.particle.x > width || p.particle.x < 0) p.vx *= -1
-      if (p.particle.y > height || p.particle.y < 0) p.vy *= -1
+  app.ticker.add((ticker) => {
+    for (const particle of particles) {
+      particle.x += particle.vx * ticker.deltaTime
+      particle.y += particle.vy * ticker.deltaTime
+
+      if (particle.x > width || particle.x < 0) particle.vx *= -1
+      if (particle.y > height || particle.y < 0) particle.vy *= -1
     }
   })
-}
-
-interface ParticleObject {
-  particle: Particle
-  vx: number
-  vy: number
 }
 
 function removeOldCanvases() {
