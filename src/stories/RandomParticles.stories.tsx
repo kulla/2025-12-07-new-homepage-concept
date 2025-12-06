@@ -42,7 +42,7 @@ async function initAnimation() {
 
   app.stage.addChild(container)
 
-  const particles: Particle[] = []
+  const particles: ParticleObject[] = []
 
   for (let i = 0; i < NUM_PARTICLES; i++) {
     const scale = 0.02 + Math.random() * 0.05
@@ -57,23 +57,30 @@ async function initAnimation() {
       alpha: 1,
     })
 
+    particles.push({
+      particle,
+      vx: Math.random() * 1 - 0.5,
+      vy: Math.random() * 1 - 0.5,
+    })
+
     container.addParticle(particle)
-    particles.push(particle)
   }
   // Listen for animate update
   app.ticker.add((ticker) => {
-    for (const particle of particles) {
-      particle.rotation += 0.1 * ticker.deltaTime
-      particle.x += (Math.random() - 0.5) * 2
-      particle.y += (Math.random() - 0.5) * 2
+    for (const p of particles) {
+      p.particle.x += p.vx * ticker.deltaTime
+      p.particle.y += p.vy * ticker.deltaTime
 
-      // Wrap around screen edges
-      if (particle.x < 0) particle.x = width
-      else if (particle.x > width) particle.x = 0
-      if (particle.y < 0) particle.y = height
-      else if (particle.y > height) particle.y = 0
+      if (p.particle.x > width || p.particle.x < 0) p.vx *= -1
+      if (p.particle.y > height || p.particle.y < 0) p.vy *= -1
     }
   })
+}
+
+interface ParticleObject {
+  particle: Particle
+  vx: number
+  vy: number
 }
 
 function removeOldCanvases() {
