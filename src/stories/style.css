@@ -7,5 +7,6 @@ body {
 }
 
 body.sb-main-padded.sb-show-main {
+  @apply w-screen h-screen;
   padding: 0;
 }

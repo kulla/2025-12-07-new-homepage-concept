@@ -22,9 +22,17 @@ function Animation() {
 }
 
 async function initAnimation() {
+  removeOldCanvases()
+
   const app = new Application()
 
   await app.init({ background: '#1099bb', resizeTo: window })
+
+  for (const child of document.body.children) {
+    if (child.tagName.toLowerCase() === 'canvas') {
+      document.body.removeChild(child)
+    }
+  }
 
   document.body.appendChild(app.canvas)
 
@@ -58,4 +66,12 @@ async function initAnimation() {
     // * use delta to create frame-independent transform *
     container.rotation -= 0.01 * time.deltaTime
   })
+}
+
+function removeOldCanvases() {
+  for (const child of document.body.children) {
+    if (child.tagName.toLowerCase() === 'canvas') {
+      document.body.removeChild(child)
+    }
+  }
 }
