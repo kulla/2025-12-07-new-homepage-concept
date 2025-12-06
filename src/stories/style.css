@@ -5,3 +5,7 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+body.sb-main-padded.sb-show-main {
+  padding: 0;
+}
