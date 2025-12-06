@@ -1,18 +1,4 @@
-import './style.css'
-import type { Meta, StoryObj } from '@storybook/react-vite'
-
-const meta = {
-  title: 'Screens/StartScreen',
-  component: StartScreen,
-} satisfies Meta<typeof StartScreen>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
-
-function StartScreen() {
+export default function StartScreen() {
   return (
     <div className="bg-white w-full min-h-screen flex items-center justify-center">
       <div className="flex items-center flex-col gap-5 md:flex-row md:gap-10">

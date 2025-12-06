@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+body.sb-main-padded.sb-show-main {
+  @apply w-screen h-screen;
+  padding: 0;
+}
