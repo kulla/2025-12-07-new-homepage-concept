@@ -1,8 +1,10 @@
 import './style.css'
 
-import { Application, Assets, Container, Sprite } from 'pixi.js'
+import { Application, Particle, ParticleContainer, Texture } from 'pixi.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useEffect } from 'react'
+
+const NUM_PARTICLES = 1000
 
 const meta = {
   title: 'RandomParticles',
@@ -28,43 +30,37 @@ async function initAnimation() {
 
   await app.init({ background: '#1099bb', resizeTo: window })
 
-  for (const child of document.body.children) {
-    if (child.tagName.toLowerCase() === 'canvas') {
-      document.body.removeChild(child)
-    }
-  }
-
   document.body.appendChild(app.canvas)
 
-  const container = new Container()
+  const { width, height } = app.screen
+
+  const texture = Texture.from(
+    'https://upload.wikimedia.org/wikipedia/commons/7/7a/Stone_14-512x512_%28Screaming_Brain_Studios%29.png',
+  )
+
+  const container = new ParticleContainer()
 
   app.stage.addChild(container)
 
-  // Load the bunny texture
-  const texture = await Assets.load('https://pixijs.com/assets/bunny.png')
-
-  // Create a 5x5 grid of bunnies in the container
-  for (let i = 0; i < 25; i++) {
-    const bunny = new Sprite(texture)
-
-    bunny.x = (i % 5) * 40
-    bunny.y = Math.floor(i / 5) * 40
-    container.addChild(bunny)
+  for (let i = 0; i < NUM_PARTICLES; i++) {
+    container.addParticle(
+      new Particle({
+        texture,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        scaleX: 0.02 + Math.random() * 0.05,
+        scaleY: 0.02 + Math.random() * 0.05,
+        rotation: Math.random() * Math.PI * 2,
+        tint: Math.random() * 0xffffff,
+        alpha: 0.5 + Math.random() * 0.5,
+      }),
+    )
   }
-
-  // Move the container to the center
-  container.x = app.screen.width / 2
-  container.y = app.screen.height / 2
-
-  // Center the bunny sprites in local container coordinates
-  container.pivot.x = container.width / 2
-  container.pivot.y = container.height / 2
-
   // Listen for animate update
   app.ticker.add((time) => {
     // Continuously rotate the container!
     // * use delta to create frame-independent transform *
-    container.rotation -= 0.01 * time.deltaTime
+    //container.rotation -= 0.01 * time.deltaTime
   })
 }
 
