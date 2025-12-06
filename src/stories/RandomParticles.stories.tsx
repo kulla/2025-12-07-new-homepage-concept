@@ -41,6 +41,7 @@ async function initAnimation() {
   const container = new ParticleContainer()
 
   app.stage.addChild(container)
+  app.ticker.maxFPS = 30
 
   const particles: ParticleObject[] = []
 
@@ -65,7 +66,7 @@ async function initAnimation() {
 
     container.addParticle(particle)
   }
-  // Listen for animate update
+
   app.ticker.add((ticker) => {
     for (const p of particles) {
       p.particle.x += p.vx * ticker.deltaTime
