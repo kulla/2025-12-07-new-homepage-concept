@@ -1,6 +1,6 @@
 import './style.css'
 
-import { Application, Particle, ParticleContainer, Texture } from 'pixi.js'
+import { Application, Assets, Particle, ParticleContainer } from 'pixi.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useEffect } from 'react'
 
@@ -28,39 +28,51 @@ async function initAnimation() {
 
   const app = new Application()
 
-  await app.init({ background: '#1099bb', resizeTo: window })
+  await app.init({ background: 'white', resizeTo: window })
 
   document.body.appendChild(app.canvas)
 
   const { width, height } = app.screen
 
-  const texture = Texture.from(
-    'https://upload.wikimedia.org/wikipedia/commons/7/7a/Stone_14-512x512_%28Screaming_Brain_Studios%29.png',
+  const texture = await Assets.load(
+    'https://i0.wp.com/www.fantasticmaps.com/wp-content/uploads/2012/02/grunge.png?w=258',
   )
 
   const container = new ParticleContainer()
 
   app.stage.addChild(container)
 
+  const particles: Particle[] = []
+
   for (let i = 0; i < NUM_PARTICLES; i++) {
-    container.addParticle(
-      new Particle({
-        texture,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        scaleX: 0.02 + Math.random() * 0.05,
-        scaleY: 0.02 + Math.random() * 0.05,
-        rotation: Math.random() * Math.PI * 2,
-        tint: Math.random() * 0xffffff,
-        alpha: 0.5 + Math.random() * 0.5,
-      }),
-    )
+    const scale = 0.02 + Math.random() * 0.05
+    const particle = new Particle({
+      texture,
+      x: Math.random() * width,
+      y: Math.random() * height,
+      scaleX: scale + Math.random() * 0.01,
+      scaleY: scale + Math.random() * 0.01,
+      rotation: Math.random() * Math.PI * 2,
+      tint: Math.random() * 0xffffff,
+      alpha: 1,
+    })
+
+    container.addParticle(particle)
+    particles.push(particle)
   }
   // Listen for animate update
-  app.ticker.add((time) => {
-    // Continuously rotate the container!
-    // * use delta to create frame-independent transform *
-    //container.rotation -= 0.01 * time.deltaTime
+  app.ticker.add((ticker) => {
+    for (const particle of particles) {
+      particle.rotation += 0.1 * ticker.deltaTime
+      particle.x += (Math.random() - 0.5) * 2
+      particle.y += (Math.random() - 0.5) * 2
+
+      // Wrap around screen edges
+      if (particle.x < 0) particle.x = width
+      else if (particle.x > width) particle.x = 0
+      if (particle.y < 0) particle.y = height
+      else if (particle.y > height) particle.y = 0
+    }
   })
 }
 
