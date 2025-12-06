@@ -38,7 +38,14 @@ async function initAnimation() {
 
   const app = new Application()
 
-  await app.init({ background: 'white', resizeTo: window })
+  // Settings as in https://codesandbox.io/p/sandbox/pixi-graphics-post-attempt-4-hlgs33?file=%2Fsrc%2Findex.ts&from-embed
+  await app.init({
+    background: 'white',
+    resizeTo: window,
+    antialias: true,
+    //autoDensity: true,
+    //resolution: window.devicePixelRatio,
+  })
 
   document.body.appendChild(app.canvas)
 
