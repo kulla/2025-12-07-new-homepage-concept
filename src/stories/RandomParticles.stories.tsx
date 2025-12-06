@@ -1,20 +1,13 @@
 import './style.css'
 
-import React, { useMemo } from 'react'
-import {
-  Application,
-  extend,
-  useTick,
-  type PixiReactElementProps,
-} from '@pixi/react'
-import { Container, Graphics } from 'pixi.js'
-import { Stage } from '@pixi/layers'
+import { Application, Assets, Container, Sprite } from 'pixi.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useEffect } from 'react'
 
 const meta = {
   title: 'RandomParticles',
-  component: App,
-} satisfies Meta<typeof App>
+  component: Animation,
+} satisfies Meta<typeof Animation>
 
 export default meta
 
@@ -22,101 +15,47 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-extend({ Graphics, Container, Stage })
+function Animation() {
+  useEffect(() => void initAnimation(), [])
 
-const WIDTH = 800
-const HEIGHT = 600
-const NUM_PARTICLES = 200
-
-type ParticleData = {
-  id: number
-  x: number
-  y: number
-  radius: number
-  color: number
-  vx: number
-  vy: number
+  return null
 }
 
-// Helper to create random particles
-function createParticles(): ParticleData[] {
-  const particles: ParticleData[] = []
+async function initAnimation() {
+  const app = new Application()
 
-  for (let i = 0; i < NUM_PARTICLES; i++) {
-    particles.push({
-      id: i,
-      x: Math.random() * WIDTH,
-      y: Math.random() * HEIGHT,
-      radius: 2 + Math.random() * 3,
-      color: Math.random() * 0xffffff,
-      vx: (Math.random() - 0.5) * 0.5, // small initial velocity
-      vy: (Math.random() - 0.5) * 0.5,
-    })
+  await app.init({ background: '#1099bb', resizeTo: window })
+
+  document.body.appendChild(app.canvas)
+
+  const container = new Container()
+
+  app.stage.addChild(container)
+
+  // Load the bunny texture
+  const texture = await Assets.load('https://pixijs.com/assets/bunny.png')
+
+  // Create a 5x5 grid of bunnies in the container
+  for (let i = 0; i < 25; i++) {
+    const bunny = new Sprite(texture)
+
+    bunny.x = (i % 5) * 40
+    bunny.y = Math.floor(i / 5) * 40
+    container.addChild(bunny)
   }
 
-  return particles
-}
+  // Move the container to the center
+  container.x = app.screen.width / 2
+  container.y = app.screen.height / 2
 
-// Single particle component
-const Particle: React.FC<{
-  data: ParticleData
-}> = ({ data }) => {
-  // local mutable state using refs inside PIXI’s Graphics
-  // We’ll update the `data` object directly on each tick.
+  // Center the bunny sprites in local container coordinates
+  container.pivot.x = container.width / 2
+  container.pivot.y = container.height / 2
 
-  useTick(() => {
-    // add small random “jitter” to velocity for wandering
-    data.vx += (Math.random() - 0.5) * 0.05
-    data.vy += (Math.random() - 0.5) * 0.05
-
-    // limit speed a bit
-    const maxSpeed = 1.5
-    const speed = Math.hypot(data.vx, data.vy)
-    if (speed > maxSpeed) {
-      data.vx = (data.vx / speed) * maxSpeed
-      data.vy = (data.vy / speed) * maxSpeed
-    }
-
-    // move
-    data.x += data.vx
-    data.y += data.vy
-
-    // bounce off edges
-    if (data.x < 0 || data.x > WIDTH) data.vx *= -1
-    if (data.y < 0 || data.y > HEIGHT) data.vy *= -1
+  // Listen for animate update
+  app.ticker.add((time) => {
+    // Continuously rotate the container!
+    // * use delta to create frame-independent transform *
+    container.rotation -= 0.01 * time.deltaTime
   })
-
-  return (
-    <pixiGraphics
-      draw={(g) => {
-        g.clear()
-        g.beginFill(data.color)
-        g.drawCircle(data.x, data.y, data.radius)
-        g.endFill()
-      }}
-    />
-  )
-}
-
-const ParticleLayer: React.FC = () => {
-  // create particles once
-  const particles = useMemo(() => createParticles(), [])
-
-  return (
-    <pixiContainer>
-      {particles.map((p) => (
-        <Particle key={p.id} data={p} />
-      ))}
-    </pixiContainer>
-  )
-}
-
-function App() {
-  return (
-    <Application sharedTicker autoStart>
-      <pixiContainer width={WIDTH} height={HEIGHT}>
-        <ParticleLayer />
-      </pixiContainer>
-    </Application>
-  )
 }
