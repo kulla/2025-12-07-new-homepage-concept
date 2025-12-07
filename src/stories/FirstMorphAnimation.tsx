@@ -10,6 +10,8 @@ import { useEffect, useRef } from 'react'
 const NUM_PARTICLES = 5000
 const HEART_URL =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/EuroBipride.svg/500px-EuroBipride.svg.png'
+const STIFTNESS = 0.04
+const DAMPING = 0.1
 
 export default function Animation() {
   const divRef = useRef<HTMLDivElement>(null)
@@ -111,10 +113,14 @@ async function initAnimation({
       const particle = particles[i]
       const target = targetPoints[i]
 
-      particle.x +=
-        (target.x - particle.x) * 0.05 + particle.vx * ticker.deltaTime
-      particle.y +=
-        (target.y - particle.y) * 0.05 + particle.vy * ticker.deltaTime
+      const ax = (target.x - particle.x) * STIFTNESS
+      const ay = (target.y - particle.y) * STIFTNESS
+
+      particle.vx = (particle.vx + ax) * DAMPING
+      particle.vy = (particle.vy + ay) * DAMPING
+
+      particle.x += particle.vx * ticker.deltaTime
+      particle.y += particle.vy * ticker.deltaTime
 
       if (particle.x > width || particle.x < 0) particle.vx *= -1
       if (particle.y > height || particle.y < 0) particle.vy *= -1
