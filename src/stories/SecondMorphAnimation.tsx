@@ -10,7 +10,7 @@ import {
 import { useEffect, useRef } from 'react'
 
 const NUM_PARTICLES = 30000
-const HEART_URL = '/public/vision2.png'
+const HEART_URL = '/public/square.png'
 const STIFTNESS = 0.03
 const DAMPING = 0.3
 
