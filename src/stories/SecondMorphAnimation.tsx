@@ -10,7 +10,7 @@ import {
 import { useEffect, useRef } from 'react'
 
 const NUM_PARTICLES = 30000
-const HEART_URL = '/public/vision1.png'
+const HEART_URL = '/public/vision2.png'
 const STIFTNESS = 0.03
 const DAMPING = 0.3
 
@@ -40,7 +40,7 @@ export default function Animation() {
       ref={divRef}
       className="w-full h-screen flex justify-center items-center"
     >
-      <div className="bg-white/85 w-10/12 max-w-[800px] h-10/12 max-h-[600px] z-10 p-4 overflow-y-scroll rounded-lg shadow-lg">
+      <div className="bg-white/85 w-10/12 max-w-[800px] h-10/12 max-h-[600px] z-10 p-5 overflow-y-scroll rounded-xl shadow-lg">
         <p>
           Dolorum omnis harum laborum consequatur dolorem aperiam rerum dolore.
           Ut nihil et consectetur. Hic commodi adipisci omnis quaerat accusamus
