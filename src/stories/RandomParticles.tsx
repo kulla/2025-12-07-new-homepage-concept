@@ -1,28 +1,14 @@
-import './style.css'
-
 import {
   Application,
   Assets,
   Particle as PixiParticle,
   ParticleContainer,
 } from 'pixi.js'
-import type { Meta, StoryObj } from '@storybook/react-vite'
 import { useEffect } from 'react'
 
 const NUM_PARTICLES = 1000
 
-const meta = {
-  title: 'Animation/Random Particles',
-  component: Animation,
-} satisfies Meta<typeof Animation>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {}
-
-function Animation() {
+export default function Animation() {
   useEffect(() => void initAnimation(), [])
 
   return null
