@@ -109,7 +109,7 @@ async function initAnimation({
 
   await app.init({
     background: 'white',
-    resizeTo: window,
+    resizeTo: div,
     antialias: true,
     autoDensity: true,
     resolution: window.devicePixelRatio,
