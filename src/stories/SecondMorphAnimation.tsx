@@ -7,7 +7,7 @@ import {
 } from 'pixi.js'
 import { useEffect, useRef } from 'react'
 
-const NUM_PARTICLES = 20000
+const NUM_PARTICLES = 30000
 const HEART_URL = '/public/vision1.png'
 const STIFTNESS = 0.03
 const DAMPING = 0.3
