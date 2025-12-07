@@ -4,14 +4,31 @@ import {
   Particle as PixiParticle,
   ParticleContainer,
 } from 'pixi.js'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 const NUM_PARTICLES = 1000
 
 export default function Animation() {
-  useEffect(() => void initAnimation(), [])
+  const divRef = useRef<HTMLDivElement>(null)
 
-  return null
+  useEffect(() => {
+    console.log('Initializing animation')
+
+    if (divRef.current == null) return
+
+    const abortController = new AbortController()
+
+    void initAnimation({ abortController, div: divRef.current })
+
+    return () => {
+      abortController.abort()
+    }
+
+    // Make sure to run this effect after hot reloads
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [divRef, initAnimation])
+
+  return <div id="animation" ref={divRef}></div>
 }
 
 class Particle extends PixiParticle {
@@ -19,12 +36,15 @@ class Particle extends PixiParticle {
   vy: number = 0
 }
 
-async function initAnimation() {
-  removeOldCanvases()
-
+async function initAnimation({
+  abortController,
+  div,
+}: {
+  abortController: AbortController
+  div: HTMLDivElement
+}) {
   const app = new Application()
 
-  // Settings as in https://codesandbox.io/p/sandbox/pixi-graphics-post-attempt-4-hlgs33?file=%2Fsrc%2Findex.ts&from-embed
   await app.init({
     background: 'white',
     resizeTo: window,
@@ -33,7 +53,7 @@ async function initAnimation() {
     //resolution: window.devicePixelRatio,
   })
 
-  document.body.appendChild(app.canvas)
+  div.appendChild(app.canvas)
 
   const { width, height } = app.screen
 
@@ -70,6 +90,12 @@ async function initAnimation() {
   container.addParticle(...particles)
 
   app.ticker.add((ticker) => {
+    if (abortController.signal.aborted && div.contains(app.canvas)) {
+      div.removeChild(app.canvas)
+      app.destroy()
+      return
+    }
+
     for (const particle of particles) {
       particle.x += particle.vx * ticker.deltaTime
       particle.y += particle.vy * ticker.deltaTime
@@ -78,12 +104,4 @@ async function initAnimation() {
       if (particle.y > height || particle.y < 0) particle.vy *= -1
     }
   })
-}
-
-function removeOldCanvases() {
-  for (const child of document.body.children) {
-    if (child.tagName.toLowerCase() === 'canvas') {
-      document.body.removeChild(child)
-    }
-  }
 }
