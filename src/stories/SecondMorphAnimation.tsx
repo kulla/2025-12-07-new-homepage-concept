@@ -10,7 +10,7 @@ import {
 import { useEffect, useRef } from 'react'
 
 const NUM_PARTICLES = 30000
-const HEART_URL = '/public/square.png'
+const HEART_URL = '/public/chatgpt-vision.png'
 const STIFTNESS = 0.03
 const DAMPING = 0.3
 
@@ -170,15 +170,15 @@ async function initAnimation({
       const particle = particles[i]
       const target = targetPoints[i]
 
-      const targetImageSize = Math.min(
-        Math.max(div.clientWidth, div.clientHeight),
-        1200,
-      )
+      const targetWidth = Math.min(div.clientWidth, 1200)
+      const targetHeight = Math.min(div.clientHeight, 1200)
 
       const tx =
-        targetImageSize * target.x + (div.clientWidth - targetImageSize) / 2
+        targetWidth * target.x +
+        Math.max((div.clientWidth - targetWidth) / 2, 0)
       const ty =
-        targetImageSize * target.y + (div.clientHeight - targetImageSize) / 2
+        targetHeight * target.y +
+        Math.max((div.clientHeight - targetHeight) / 2, 0)
 
       const ax =
         (tx - particle.x) * STIFTNESS + Math.sign(Math.random() - 0.5) * 0.4
