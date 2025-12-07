@@ -180,8 +180,10 @@ async function initAnimation({
       const ty =
         targetImageSize * target.y + (div.clientHeight - targetImageSize) / 2
 
-      const ax = (tx - particle.x) * STIFTNESS
-      const ay = (ty - particle.y) * STIFTNESS
+      const ax =
+        (tx - particle.x) * STIFTNESS + Math.sign(Math.random() - 0.5) * 0.4
+      const ay =
+        (ty - particle.y) * STIFTNESS + Math.sign(Math.random() - 0.5) * 0.4
 
       particle.vx = (particle.vx + ax) * DAMPING
       particle.vy = (particle.vy + ay) * DAMPING
