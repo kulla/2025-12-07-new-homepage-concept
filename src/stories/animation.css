@@ -1,0 +1,7 @@
+canvas {
+  @apply w-full h-screen absolute z-0;
+}
+
+p {
+  margin-bottom: 2rem;
+}

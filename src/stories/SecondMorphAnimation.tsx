@@ -1,3 +1,5 @@
+import './animation.css'
+
 import {
   Application,
   Assets,
@@ -32,7 +34,36 @@ export default function Animation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [divRef, initAnimation])
 
-  return <div id="animation" ref={divRef}></div>
+  return (
+    <div
+      id="animation"
+      ref={divRef}
+      className="w-full h-screen flex justify-center items-center"
+    >
+      <div className="bg-white/85 w-10/12 max-w-[800px] h-10/12 max-h-[600px] z-10 p-4">
+        <p>
+          Dolorum omnis harum laborum consequatur dolorem aperiam rerum dolore.
+          Ut nihil et consectetur. Hic commodi adipisci omnis quaerat accusamus
+          veritatis.
+        </p>
+        <p>
+          Nostrum sed porro sint deleniti. Non error quaerat amet sed sunt
+          dolores. Nisi dolor nam quo occaecati veniam. Temporibus voluptas est
+          a maxime consequuntur. Maiores illo voluptatem ipsa tenetur magnam aut
+          est.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+  )
 }
 
 class Particle extends PixiParticle {
