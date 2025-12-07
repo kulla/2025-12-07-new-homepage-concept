@@ -49,8 +49,8 @@ async function initAnimation({
     background: 'white',
     resizeTo: window,
     antialias: true,
-    //autoDensity: true,
-    //resolution: window.devicePixelRatio,
+    autoDensity: true,
+    resolution: window.devicePixelRatio,
   })
 
   div.appendChild(app.canvas)
