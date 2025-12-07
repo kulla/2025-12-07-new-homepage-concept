@@ -6,7 +6,7 @@ import {
 } from 'pixi.js'
 import { useEffect, useRef } from 'react'
 
-const NUM_PARTICLES = 1000
+const NUM_PARTICLES = 5000
 
 export default function Animation() {
   const divRef = useRef<HTMLDivElement>(null)
