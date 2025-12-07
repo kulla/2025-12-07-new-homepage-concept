@@ -170,8 +170,15 @@ async function initAnimation({
       const particle = particles[i]
       const target = targetPoints[i]
 
-      const tx = 1200 * target.x + (window.innerWidth - 1200) / 2
-      const ty = 1200 * target.y + (window.innerHeight - 1200) / 2
+      const targetImageSize = Math.min(
+        Math.max(div.clientWidth, div.clientHeight),
+        1200,
+      )
+
+      const tx =
+        targetImageSize * target.x + (div.clientWidth - targetImageSize) / 2
+      const ty =
+        targetImageSize * target.y + (div.clientHeight - targetImageSize) / 2
 
       const ax = (tx - particle.x) * STIFTNESS
       const ay = (ty - particle.y) * STIFTNESS
