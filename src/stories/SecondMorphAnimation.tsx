@@ -40,7 +40,7 @@ export default function Animation() {
       ref={divRef}
       className="w-full h-screen flex justify-center items-center"
     >
-      <div className="bg-white/85 w-10/12 max-w-[800px] h-10/12 max-h-[600px] z-10 p-5 overflow-y-scroll rounded-xl shadow-lg">
+      <div className="bg-white/85 w-10/12 max-w-[600px] h-10/12 max-h-[600px] z-10 p-5 overflow-y-scroll rounded-xl shadow-lg">
         <p>
           Dolorum omnis harum laborum consequatur dolorem aperiam rerum dolore.
           Ut nihil et consectetur. Hic commodi adipisci omnis quaerat accusamus
@@ -170,8 +170,11 @@ async function initAnimation({
       const particle = particles[i]
       const target = targetPoints[i]
 
-      const ax = (target.x - particle.x) * STIFTNESS
-      const ay = (target.y - particle.y) * STIFTNESS
+      const tx = 1200 * target.x + (window.innerWidth - 1200) / 2
+      const ty = 1200 * target.y + (window.innerHeight - 1200) / 2
+
+      const ax = (tx - particle.x) * STIFTNESS
+      const ay = (ty - particle.y) * STIFTNESS
 
       particle.vx = (particle.vx + ax) * DAMPING
       particle.vy = (particle.vy + ay) * DAMPING
@@ -261,10 +264,10 @@ function samplePointsFromTexture(args: {
     const u = Math.random()
     const idx = findIndexInCdf(u)
 
-    const py = Math.floor(idx / width)
-    const px = idx % width
+    const y = (Math.floor(idx / width) + 0.5) / width
+    const x = ((idx % width) + 0.5) / height
 
-    samples.push({ x: px + 0.5, y: py + 0.5 })
+    samples.push({ x, y })
   }
 
   return samples
