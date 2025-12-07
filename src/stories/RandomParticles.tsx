@@ -63,6 +63,8 @@ async function initAnimation() {
 
     particle.vx = Math.random() * 1 - 0.5
     particle.vy = Math.random() * 1 - 0.5
+
+    particles.push(particle)
   }
 
   container.addParticle(...particles)
